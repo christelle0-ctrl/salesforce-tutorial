@@ -7,8 +7,9 @@ to automate part of its daily work.
 Salesforce is an online program that companies use to keep all their
 customer information in one place (a CRM). Think of it as a big
 notebook that every employee can open, but on the computer.
-There is nothing to install: you request a free account here:
+There is nothing to install: you request a free Developer Edition account here (it stays available as long as you keep using it):
 https://developer.salesforce.com/signup
+
 
 ## Why we built this
 At a gym, employees have to contact new prospects quickly, welcome each
