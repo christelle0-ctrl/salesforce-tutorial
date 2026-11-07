@@ -1,40 +1,49 @@
-# Salesforce tutorial
+# FitLife: automating a gym with Salesforce
 
-## Project description
-This tutorial shows how to automate prospect and membership management
-in Salesforce using Flow Builder. It contains three flows.
+Our project is about a fictional gym called FitLife. We used Salesforce
+to automate part of its daily work.
 
-## 1. Prospect onboarding
-When a new Lead is created, a decision (Lead Source Check) sends it down one of these paths:
-- Website: a decision checks if a free trial was requested. If yes, a "Schedule Trial" task is created, otherwise a "Send Brochure" task. Both paths then create a "Sales Follow-up" task.
-- Referral: creates a "Call Referrer" task, then a decision (Prospect Priority Check) creates a "Priority Call" task for hot leads or a "Welcome Offer" task for standard leads.
-- Trade Show: creates a "Trade Show Offer" task and a "Newsletter" task.
-- Other sources: no action.
+## What is Salesforce?
+Salesforce is an online program that companies use to keep all their
+customer information in one place (a CRM). Think of it as a big
+notebook that every employee can open, but on the computer.
+There is nothing to install: you request a free account here:
+https://developer.salesforce.com/signup
 
-## 2. Membership Subscription
-A record-triggered flow that runs when an Opportunity is created.
-A decision (Membership Type Check) sends the record down one of
-three paths:
-- Premium: creates a welcome task and updates the description
-- Standard: creates a welcome task and an onboarding task
-- Student: creates a check task and a discount task
-- Other type: no action
+## Why we built this
+At a gym, employees have to contact new prospects quickly, welcome each
+new member depending on their plan, and remind members before their
+membership ends. They are busy, so some of these steps get forgotten.
+We built 3 flows (automations) to do it for them.
 
-## 3. Membership Renewal Reminder
-A schedule-triggered flow that runs every day on Opportunities that
-have a Membership end date. It calculates the days left before the
-membership ends, then a decision (Time Left Check) chooses the path:
-- Urgent (7 days or less): creates a call task and a discount task,
-  then sends a renewal email if the contact has an email address
-- Reminder (8 to 30 days): creates a renewal reminder task and a
-  satisfaction check task
-- Not Yet (more than 30 days): no action
+## Words to know
+- Lead: someone who might want to join
+- Opportunity: a possible sale, here a membership
+- Task: something an employee has to do
+- Flow: a Salesforce tool that does this automatically, without code
 
-## Custom field
-- Opportunity: Membership end date (Date)
+Each flow works the same way: a trigger (when it starts), a decision
+(which path to take), and an action (usually creating a task).
 
-## Files
-The screenshots in this repository show each flow.
+## Our 3 flows
+1. **Prospect Onboarding**: starts when a Lead is created. It checks
+   where the person comes from (website, referral, trade show) and
+   creates different tasks for the employee.
+2. **Membership Subscription**: starts when an Opportunity is created
+   or updated. It checks the plan (Premium, Standard, Student) and
+   creates the right welcome tasks.
+3. **Membership Renewal Reminder**: runs every day. It checks how many
+   days are left before a membership ends. If it is 7 days or less, it
+   creates tasks and sends an email. If it is 30 days or less, it
+   creates lighter reminder tasks.
 
-## Video
-Link coming soon
+## Videos
+- Flow 2, Membership Subscription: [Workflow 2.mov]
+- Flow 3, Membership Renewal Reminder: [Workflow 3.mov]
+
+Screenshots of each flow are also in this repository.
+
+## What we would improve
+Flow 2 can run again at every update, and Flow 3 can send the same
+reminder several days in a row. In a real company, we would add a
+condition or a field to avoid that.
